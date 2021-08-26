@@ -11,14 +11,18 @@ function ProductEdit(props) {
   
     // console.log(params)
 
-  useEffect(async () => {
-    try {
-      let product = await axios.put(
-        `https://60efffc0f587af00179d3c17.mockapi.io/products/${id}`
-      );
-      setProductName(product.data.productName);
-      setPrice(product.data.price);
-    } catch (error) {}
+  useEffect( () => {
+    let fetchData = async () => {
+      try {
+        let product = await axios.put(
+          `https://60efffc0f587af00179d3c17.mockapi.io/products/${id}`
+        );
+        setProductName(product.data.productName);
+        setPrice(product.data.price);
+      } catch (error) {}
+    }
+    fetchData()
+    // eslint-disable-next-line
   }, []);
 
   let handleSubmit = async e => {

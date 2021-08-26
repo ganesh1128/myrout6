@@ -5,16 +5,20 @@ import axios from "axios";
 function Product() {
   const [prodList, setProdList] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  useEffect(async () => {
-    try {
-      let products = await axios.get(
-        "https://60efffc0f587af00179d3c17.mockapi.io/products"
-      );
-      setProdList([...products.data]);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
+  useEffect( () => {
+    let fetchData = async () => {
+      try {
+        let products = await axios.get(
+          "https://60efffc0f587af00179d3c17.mockapi.io/products"
+        );
+        setProdList([...products.data]);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
     }
+    fetchData();
+    
   }, []);
 
   let handleDelete = async id => {
@@ -24,7 +28,7 @@ function Product() {
         await axios.delete(
           `https://60efffc0f587af00179d3c17.mockapi.io/products/${id}`
         );
-        let rowIndex = prodList.findIndex(obj => obj.id == id);
+        let rowIndex = prodList.findIndex(obj => obj.id === id);
         prodList.splice(rowIndex, 1);
         setProdList([...prodList]);
       } catch (error) {
@@ -37,11 +41,9 @@ function Product() {
       <h1 class="h3 mb-2 text-gray-800">Products</h1>
       <p class="mb-4">
         DataTables is a third party plugin that is used to generate the demo
-        table below. For more information about DataTables, please visit the{" "}
-        <a target="_blank" href="https://datatables.net">
-          official DataTables documentation
-        </a>
-        .
+        table below. For more information about DataTables, please visit the official DataTables documentation.
+       
+        
       </p>
       <Link
         to="/product-create"

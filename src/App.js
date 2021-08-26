@@ -4,7 +4,7 @@ import Topbar from "./Topbar";
 import Dashboard from "./Dashboard";
 import Product from "./Product";
 import ProductCreate from "./product-create";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import ProductEdit from "./product-edit";
 
